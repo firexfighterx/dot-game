@@ -1,0 +1,1 @@
+export const updateName = (name) => dispatch => dispatch({type: 'UPDATE_NAME', name});

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo.svg'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actions from './actions/nameActions';
 import './App.css';
 
 class App extends Component {
@@ -17,12 +20,15 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            {this.props.name}
           </a>
+          <button onClick={() => this.props.actions.updateName('TESTING')}>change</button>
         </header>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(
+state => ({name: state.name}), 
+dispatch => ({actions: bindActionCreators(actions, dispatch)}))(App);
